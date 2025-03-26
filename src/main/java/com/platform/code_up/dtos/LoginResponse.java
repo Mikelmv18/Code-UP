@@ -1,4 +1,4 @@
-package com.platform.code_up;
+package com.platform.code_up.dtos;
 
 import lombok.Data;
 

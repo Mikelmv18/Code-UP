@@ -1,9 +1,6 @@
 package com.platform.code_up.entities;
 
-import com.platform.code_up.annotations.PasswordMatcher;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -34,6 +31,9 @@ public class User implements UserDetails {
 
     @Transient
     private String confirmPassword;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ForgotPassword> forgotPassword;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
