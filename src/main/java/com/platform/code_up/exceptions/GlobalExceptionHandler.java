@@ -8,71 +8,67 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ProblemDetail> handleSecurityException(Exception exception) {
-        ProblemDetail errorDetail = null;
+    public ResponseEntity<Map<String,String>> handleSecurityException(Exception exception) {
+
+        Map<String,String> response = new HashMap<>();
 
         exception.printStackTrace(); // Log for debugging
 
+
         if (exception instanceof BadCredentialsException) {
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(401), exception.getMessage());
-            errorDetail.setProperty("description", "The username or password is incorrect");
+            response.put("description", "Enter valid credentials");
+
         }
 
         else if (exception instanceof AccountStatusException) {
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
-            errorDetail.setProperty("description", "The account is locked");
+            response.put("description","Account is locked");
         }
 
         else if (exception instanceof AccessDeniedException) {
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
-            errorDetail.setProperty("description", "You are not authorized to access this resource");
+            response.put("description","You are not authorized to access this resource");
         }
 
         else if (exception instanceof SignatureException) {
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
-            errorDetail.setProperty("description", "The JWT signature is invalid");
+           response.put("description","The JWT signature is invalid");
         }
 
         else if (exception instanceof ExpiredJwtException) {
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
-            errorDetail.setProperty("description", "The JWT token has expired");
+            response.put("description","The JWT token has expired");
         }
 
-        else if (exception instanceof IllegalArgumentException) {
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(400), exception.getMessage());
-            errorDetail.setProperty("description", exception.getMessage());
+        else if (exception instanceof PasswordException ||
+                exception instanceof IllegalArgumentException ||
+                exception instanceof UsernameNotFoundException ||
+                exception instanceof TimeoutException) {
+
+            response.put("description",exception.getMessage());
+
         }
 
         else {
-            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(500), "Unknown internal server error.");
-            errorDetail.setProperty("description", "An unexpected error occurred.");
+            response.put("description","An unexpected error occurred");
         }
 
-        return ResponseEntity.status(errorDetail.getStatus()).body(errorDetail);
+        return ResponseEntity.badRequest().body(response);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        List<String> errors = ex.getBindingResult()
-                .getFieldErrors().stream()
-                .map(FieldError::getDefaultMessage)
-                .collect(Collectors.toList());
 
-        return ResponseEntity.badRequest().body(Map.of("errors", errors));
-    }
 
 
 }

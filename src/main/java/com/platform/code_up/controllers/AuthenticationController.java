@@ -9,8 +9,11 @@ import com.platform.code_up.services.JwtService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/auth")
@@ -29,21 +32,16 @@ public class AuthenticationController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> register(@RequestBody @Valid RegisterUserDto registerUserDto,
-                                      BindingResult result) {
-        if (result.hasErrors()) {
+                                      Errors errors) {
 
-            String firstError = result.getFieldErrors().stream()
-                    .findFirst()
-                    .map(error -> error.getDefaultMessage())
-                    .orElse("Validation error occurred");
+        if (errors.hasErrors()) {
 
-            // Log the first validation error
-            System.out.println("First validation error: " + firstError);
+            String firstError = String.valueOf(errors.getAllErrors().
+                   get(0).getDefaultMessage());
 
             return ResponseEntity.badRequest().body(Map.of("error", firstError));
         }
 
-        // Proceed with registration if no validation errors
         User registeredUser = authenticationService.signup(registerUserDto);
         return ResponseEntity.ok(registeredUser);
     }
