@@ -5,34 +5,29 @@ import com.sendgrid.*;
 import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 @Service
 public class EmailService {
 
-    private final String sendGridApiKey = "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";  // Replace with your actual SendGrid API key
+    private final JavaMailSender javaMailSender;
 
-    public void sendSimpleMessage(MailBody body) {
+    public EmailService(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
-        Email from = new Email("mikelvangjeli15@gmail.com");
-        String subject = body.subject();
-        Email to = new Email(body.to());
-        Content content = new Content("text/plain", body.text());
-        Mail mail = new Mail(from, subject, to, content);
+    public void sendEmail(MailBody body) {
 
-        SendGrid sg = new SendGrid(sendGridApiKey);
-        Request request = new Request();
-        try {
-            request.setMethod(Method.POST);
-            request.setEndpoint("mail/send");
-            request.setBody(mail.build());
-            Response response = sg.api(request);
-            System.out.println(response.getStatusCode());
-            System.out.println(response.getBody());
-            System.out.println(response.getHeaders());
-        } catch (IOException ex) {
-            throw new RuntimeException("Email failure");
-        }
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+
+        simpleMailMessage.setFrom("mikelvangjeli15@gmail.com");
+        simpleMailMessage.setTo(body.to());
+        simpleMailMessage.setSubject(body.subject());
+        simpleMailMessage.setText(body.text());
+
+        javaMailSender.send(simpleMailMessage);
     }
 }

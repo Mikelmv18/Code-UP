@@ -1,4 +1,4 @@
-package com.platform.code_up.controllers;
+package com.platform.code_up.controllers.auth;
 
 import com.platform.code_up.dtos.LoginResponse;
 import com.platform.code_up.dtos.LoginUserDto;
@@ -8,17 +8,14 @@ import com.platform.code_up.services.AuthenticationService;
 import com.platform.code_up.services.JwtService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/auth")
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:8081")
 public class AuthenticationController {
 
     private final JwtService jwtService;

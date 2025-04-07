@@ -1,4 +1,4 @@
-package com.platform.code_up.controllers;
+package com.platform.code_up.controllers.auth;
 
 import com.platform.code_up.dtos.ChangePassword;
 import com.platform.code_up.dtos.MailBody;
@@ -9,13 +9,10 @@ import com.platform.code_up.repositories.ForgotPasswordRepository;
 import com.platform.code_up.repositories.UserRepository;
 import com.platform.code_up.services.EmailService;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
@@ -64,7 +61,7 @@ public class ForgotPasswordController {
                 .user(user)
                 .build();
 
-        emailService.sendSimpleMessage(mailBody);
+        emailService.sendEmail(mailBody);
         forgotPasswordRepository.save(fp);
 
         return ResponseEntity.ok("Email sent for verification");
@@ -129,7 +126,7 @@ public class ForgotPasswordController {
                 .subject("Password reset")
                 .build();
 
-        emailService.sendSimpleMessage(mailBody);
+        emailService.sendEmail(mailBody);
 
         return ResponseEntity.ok("Password has been changed");
 

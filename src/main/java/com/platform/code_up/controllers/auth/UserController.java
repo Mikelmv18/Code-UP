@@ -1,4 +1,4 @@
-package com.platform.code_up.controllers;
+package com.platform.code_up.controllers.auth;
 
 import com.platform.code_up.entities.User;
 import com.platform.code_up.services.UserService;
