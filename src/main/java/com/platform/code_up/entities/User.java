@@ -32,8 +32,43 @@ public class User implements UserDetails {
     @Transient
     private String confirmPassword;
 
+    // Lidhja me ForgotPassword (One-to-Many)
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ForgotPassword> forgotPassword;
+
+    // Lidhja me Subscription (One-to-Many)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Subscription> subscriptions;
+
+    // Lidhja me Quote (One-to-Many)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Quote> quotes;
+
+    // Lidhja me UserAnswer (One-to-Many)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserAnswer> userAnswers;
+
+    // Lidhja me UserQuiz (One-to-Many)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserQuiz> userQuizzes;
+
+    // Lidhja me Achievement (Many-to-Many)
+    @ManyToMany
+    @JoinTable(
+            name = "user_achievements",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "achievement_id")
+    )
+    private List<Achievement> achievements;
+
+    // Lidhja me Milestone (Many-to-Many)
+    @ManyToMany
+    @JoinTable(
+            name = "user_milestones",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "milestone_id")
+    )
+    private List<Milestone> milestones;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
