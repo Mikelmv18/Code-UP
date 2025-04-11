@@ -22,7 +22,7 @@ public class Lesson {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private Integer order;
+    private Integer lesson_order;
 
     @ManyToOne
     @JoinColumn(name = "course_id")

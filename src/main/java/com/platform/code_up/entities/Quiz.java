@@ -19,7 +19,7 @@ public class Quiz {
 
     private Integer timer;
 
-    private Integer order;
+    private Integer quiz_order;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
