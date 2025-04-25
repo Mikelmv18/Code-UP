@@ -32,7 +32,6 @@ public class User implements UserDetails {
     @Transient
     private String confirmPassword;
 
-
     private String avatar;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

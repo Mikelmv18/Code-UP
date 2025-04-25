@@ -7,10 +7,7 @@ import com.platform.code_up.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -50,6 +47,31 @@ public class UserController {
                 currentUser.getAvatar(),
                 currentUser.getCreatedAt() != null ? currentUser.getCreatedAt().toString() : "N/A");
         return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable Integer id) {
+
+        UserDto userDto = userService.getUserbyId(id);
+
+        return ResponseEntity.ok(userDto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable Integer id,
+                                              @RequestBody UserDto userDto) {
+
+        UserDto updateduserDto = userService.updateUser(id,userDto);
+
+        return ResponseEntity.ok(userDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
+
+        userService.deleteUser(id);
+
+        return ResponseEntity.ok().body("User deleted");
     }
 }
 
