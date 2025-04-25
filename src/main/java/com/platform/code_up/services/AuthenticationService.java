@@ -30,8 +30,10 @@ public class AuthenticationService {
     public User signup(RegisterUserDto input) {
 
         User user = new User();
+        user.setName(input.getName());
         user.setEmail(input.getEmail());
         user.setPassword(passwordEncoder.encode(input.getPassword()));
+        user.setAvatar("../assets/avatars/default.png");
 
         return userRepository.save(user);
     }

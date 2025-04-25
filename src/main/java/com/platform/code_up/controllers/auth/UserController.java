@@ -63,7 +63,7 @@ public class UserController {
 
         UserDto updateduserDto = userService.updateUser(id,userDto);
 
-        return ResponseEntity.ok(userDto);
+        return ResponseEntity.ok(updateduserDto);
     }
 
     @DeleteMapping("/{id}")
