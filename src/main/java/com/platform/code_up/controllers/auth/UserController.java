@@ -43,7 +43,7 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User currentUser = (User) authentication.getPrincipal();
 
-        UserDto dto = new UserDto(currentUser.getEmail(),
+        UserDto dto = new UserDto(currentUser.getName(), currentUser.getEmail(),
                 currentUser.getAvatar(),
                 currentUser.getCreatedAt() != null ? currentUser.getCreatedAt().toString() : "N/A");
         return ResponseEntity.ok(dto);
