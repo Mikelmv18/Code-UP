@@ -44,8 +44,8 @@ public class UserController {
         User currentUser = (User) authentication.getPrincipal();
 
         UserDto dto = new UserDto(currentUser.getName(), currentUser.getEmail(),
-                currentUser.getAvatar(),
-                currentUser.getCreatedAt() != null ? currentUser.getCreatedAt().toString() : "N/A");
+                currentUser.getAvatar()
+        );
         return ResponseEntity.ok(dto);
     }
 

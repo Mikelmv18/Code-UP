@@ -3,6 +3,7 @@ package com.platform.code_up.dtos;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -16,4 +17,7 @@ public class UserDto {
     private String avatar;
 
     private String created_at;
+
+    public UserDto(String email, String avatar, String s) {
+    }
 }
