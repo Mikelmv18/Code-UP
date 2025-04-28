@@ -1,14 +1,13 @@
-package com.platform.code_up.services;
+package com.platform.code_up.services.auth;
 
 import com.platform.code_up.dtos.UserDto;
 import com.platform.code_up.entities.User;
-import com.platform.code_up.repositories.UserRepository;
+import com.platform.code_up.repositories.auth.UserRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {

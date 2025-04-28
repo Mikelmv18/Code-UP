@@ -1,9 +1,9 @@
-package com.platform.code_up.services;
+package com.platform.code_up.services.auth;
 
 import com.platform.code_up.dtos.LoginUserDto;
 import com.platform.code_up.dtos.RegisterUserDto;
 import com.platform.code_up.entities.User;
-import com.platform.code_up.repositories.UserRepository;
+import com.platform.code_up.repositories.auth.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,6 +1,6 @@
 package com.platform.code_up.configs;
 
-import com.platform.code_up.services.JwtService;
+import com.platform.code_up.services.auth.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

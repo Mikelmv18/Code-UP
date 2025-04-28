@@ -1,4 +1,4 @@
-package com.platform.code_up.repositories;
+package com.platform.code_up.repositories.auth;
 
 
 import com.platform.code_up.entities.ForgotPassword;

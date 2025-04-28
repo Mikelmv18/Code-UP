@@ -3,7 +3,7 @@ package com.platform.code_up.controllers.auth;
 
 import com.platform.code_up.dtos.UserDto;
 import com.platform.code_up.entities.User;
-import com.platform.code_up.services.UserService;
+import com.platform.code_up.services.auth.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

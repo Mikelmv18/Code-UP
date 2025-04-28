@@ -1,4 +1,4 @@
-package com.platform.code_up.services;
+package com.platform.code_up.services.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
