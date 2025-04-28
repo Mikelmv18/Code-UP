@@ -24,6 +24,8 @@ public class Lesson {
 
     private Integer lesson_order;
 
+    private Integer unit_number;
+
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;

@@ -33,7 +33,7 @@ public class AuthenticationService {
         user.setName(input.getName());
         user.setEmail(input.getEmail());
         user.setPassword(passwordEncoder.encode(input.getPassword()));
-        user.setAvatar("../assets/avatars/default.png");
+        user.setAvatar("default.png");
 
         return userRepository.save(user);
     }

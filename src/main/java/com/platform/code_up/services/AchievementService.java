@@ -54,6 +54,8 @@ public class AchievementService {
         ach.setType(achievement.getType());
         ach.setIcon(achievement.getIcon());
 
+        achievementRepository.save(ach);
+
         return new AchievementDto(ach.getType(),
                 ach.getName(),ach.getIcon());
     }

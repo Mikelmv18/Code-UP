@@ -4,7 +4,6 @@ import com.platform.code_up.dtos.AchievementDto;
 import com.platform.code_up.entities.Achievement;
 import com.platform.code_up.exceptions.AchievementNotFoundException;
 import com.platform.code_up.services.AchievementService;
-import org.apache.logging.log4j.util.ProcessIdUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
