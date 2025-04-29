@@ -1,45 +1,52 @@
 package com.platform.code_up.controllers;
 
+import com.platform.code_up.dtos.SubscriptionDto;
 import com.platform.code_up.entities.Subscription;
 import com.platform.code_up.services.SubscriptionService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/subscriptions")
+@RequestMapping("/subscriptions")
+@CrossOrigin(origins = "http://localhost:8081")
 public class SubscriptionController {
+
     private final SubscriptionService service;
 
     public SubscriptionController(SubscriptionService service) {
         this.service = service;
     }
 
-    @GetMapping
-    public List<Subscription> getAll() {
-        return service.findAll();
+    @PostMapping("/create")
+    public ResponseEntity<?> createSubscription(@RequestBody SubscriptionDto subscriptionDto) {
+        Subscription subscription = service.createSubscription(subscriptionDto);
+        return ResponseEntity.ok(subscription);
     }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Subscription>> getAllSubscriptions() {
+        List<Subscription> subscriptions = service.listAllSubscriptions();
+        return ResponseEntity.ok(subscriptions);
+    }
+
 
     @GetMapping("/{id}")
-    public Subscription getOne(@PathVariable Integer id) {
-        return service.findById(id);
-    }
-
-    @PostMapping
-    public Subscription create(@RequestBody Subscription s) {
-        return service.create(s);
+    public ResponseEntity<Subscription> getById(@PathVariable Integer id) {
+        Subscription subscription = service.getById(id);
+        return ResponseEntity.ok(subscription);
     }
 
     @PutMapping("/{id}")
-    public Subscription update(
-            @PathVariable Integer id,
-            @RequestBody Subscription s
-    ) {
-        return service.update(id, s);
+    public ResponseEntity<SubscriptionDto> updateSubscription(@PathVariable Integer id, @RequestBody SubscriptionDto subscriptionDto) {
+        SubscriptionDto updated = service.updateSubscription(id, subscriptionDto);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        service.delete(id);
+    public ResponseEntity<?> deleteSubscription(@PathVariable Integer id) {
+        service.deleteSubscription(id);
+        return ResponseEntity.ok("Subscription deleted");
     }
 }

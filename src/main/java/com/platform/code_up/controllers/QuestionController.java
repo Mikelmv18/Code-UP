@@ -1,45 +1,51 @@
 package com.platform.code_up.controllers;
 
+import com.platform.code_up.dtos.QuestionDto;
 import com.platform.code_up.entities.Question;
 import com.platform.code_up.services.QuestionService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/questions")
+@RequestMapping("/questions")
+@CrossOrigin(origins = "http://localhost:8081")
 public class QuestionController {
+
     private final QuestionService service;
 
     public QuestionController(QuestionService service) {
         this.service = service;
     }
 
-    @GetMapping
-    public List<Question> getAll() {
-        return service.findAll();
+    @PostMapping("/create")
+    public ResponseEntity<?> createQuestion(@RequestBody QuestionDto questionDto) {
+        Question question = service.createQuestion(questionDto);
+        return ResponseEntity.ok(question);
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<List<Question>> getAllQuestions() {
+        List<Question> questions = service.listAllQuestions();
+        return ResponseEntity.ok(questions);
     }
 
     @GetMapping("/{id}")
-    public Question getOne(@PathVariable Integer id) {
-        return service.findById(id);
-    }
-
-    @PostMapping
-    public Question create(@RequestBody Question q) {
-        return service.create(q);
+    public ResponseEntity<Question> getQuestionById(@PathVariable Integer id) {
+        Question question = service.getById(id);
+        return ResponseEntity.ok(question);
     }
 
     @PutMapping("/{id}")
-    public Question update(
-            @PathVariable Integer id,
-            @RequestBody Question q
-    ) {
-        return service.update(id, q);
+    public ResponseEntity<QuestionDto> updateQuestion(@PathVariable Integer id, @RequestBody QuestionDto questionDto) {
+        QuestionDto updated = service.updateQuestion(id, questionDto);
+        return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        service.delete(id);
+    public ResponseEntity<?> deleteQuestion(@PathVariable Integer id) {
+        service.deleteQuestion(id);
+        return ResponseEntity.ok("Question deleted");
     }
 }
