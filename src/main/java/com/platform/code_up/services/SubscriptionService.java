@@ -1,38 +1,74 @@
 package com.platform.code_up.services;
 
+import com.platform.code_up.dtos.SubscriptionDto;
 import com.platform.code_up.entities.Subscription;
+import com.platform.code_up.entities.User;
 import com.platform.code_up.repositories.SubscriptionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class SubscriptionService {
-    private final SubscriptionRepository repo;
 
-    public SubscriptionService(SubscriptionRepository repo) {
-        this.repo = repo;
+    private final SubscriptionRepository subscriptionRepository;
+
+    public SubscriptionService(SubscriptionRepository subscriptionRepository) {
+        this.subscriptionRepository = subscriptionRepository;
     }
 
-    public List<Subscription> findAll() {
-        return repo.findAll();
+    public Subscription createSubscription(SubscriptionDto subscriptionDto) {
+        Subscription subscription = new Subscription();
+
+        User user = new User();
+        user.setId(subscriptionDto.getUserId());
+
+        subscription.setStartTime(subscriptionDto.getStartTime());
+        subscription.setEndTime(subscriptionDto.getEndTime());
+        subscription.setPaymentStatus(subscriptionDto.getPaymentStatus());
+        subscription.setUser(user);
+
+        return subscriptionRepository.save(subscription);
     }
 
-    public Subscription findById(Integer id) {
-        return repo.findById(id)
+    public List<Subscription> listAllSubscriptions() {
+        List<Subscription> subscriptions = new ArrayList<>();
+        subscriptionRepository.findAll().forEach(subscriptions::add);
+        return subscriptions;
+    }
+
+    public Subscription getById(Integer id) {
+        return subscriptionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Subscription not found"));
     }
 
-    public Subscription create(Subscription subscription) {
-        return repo.save(subscription);
+    public SubscriptionDto updateSubscription(Integer id, SubscriptionDto subscriptionDto) {
+        Subscription subscription = subscriptionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Subscription not found"));
+
+        User user = new User();
+        user.setId(subscriptionDto.getUserId());
+
+        subscription.setStartTime(subscriptionDto.getStartTime());
+        subscription.setEndTime(subscriptionDto.getEndTime());
+        subscription.setPaymentStatus(subscriptionDto.getPaymentStatus());
+        subscription.setUser(user);
+
+        subscriptionRepository.save(subscription);
+
+        return new SubscriptionDto(
+                subscription.getStartTime(),
+                subscription.getEndTime(),
+                subscription.getPaymentStatus(),
+                subscription.getUser().getId()
+        );
     }
 
-    public Subscription update(Integer id, Subscription subscription) {
-        subscription.setId(id);
-        return repo.save(subscription);
-    }
+    public void deleteSubscription(Integer id) {
+        Subscription subscription = subscriptionRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Subscription not found"));
 
-    public void delete(Integer id) {
-        repo.deleteById(id);
+        subscriptionRepository.delete(subscription);
     }
 }
