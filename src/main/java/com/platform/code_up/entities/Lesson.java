@@ -29,4 +29,14 @@ public class Lesson {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
+
+    public Lesson(String title, String content, String contentType, int lessonOrder, int unitNumber, Course course) {
+        this.title = title;
+        this.content = content;
+        this.contentType = contentType;
+        this.lesson_order = lessonOrder;
+        this.unit_number = unitNumber;
+        this.course = course;
+    }
+
 }

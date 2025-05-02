@@ -41,8 +41,6 @@ public class LessonController {
         Lesson lesson = service.getById(id);
         return ResponseEntity.ok(new LessonDto(
                 lesson.getTitle(),
-                lesson.getDescription(),
-                lesson.getContentType(),
                 lesson.getContent(),
                 lesson.getLesson_order(),
                 lesson.getUnit_number(),

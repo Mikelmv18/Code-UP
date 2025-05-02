@@ -30,8 +30,6 @@ public class LessonService {
                 .orElseThrow(() -> new CourseNotFoundException());
 
         lesson.setTitle(lessonDto.getTitle());
-        lesson.setDescription(lessonDto.getDescription());
-        lesson.setContentType(lessonDto.getContentType());
         lesson.setContent(lessonDto.getContent());
         lesson.setLesson_order(lessonDto.getLessonOrder());
         lesson.setUnit_number(lessonDto.getUnitNumber());
@@ -57,8 +55,6 @@ public class LessonService {
                 .orElseThrow(() -> new LessonNotFoundException());
 
         lesson.setTitle(lessonDto.getTitle());
-        lesson.setDescription(lessonDto.getDescription());
-        lesson.setContentType(lessonDto.getContentType());
         lesson.setContent(lessonDto.getContent());
         lesson.setLesson_order(lessonDto.getLessonOrder());
         lesson.setUnit_number(lessonDto.getUnitNumber());
@@ -67,8 +63,6 @@ public class LessonService {
 
         return new LessonDto(
                 lesson.getTitle(),
-                lesson.getDescription(),
-                lesson.getContentType(),
                 lesson.getContent(),
                 lesson.getLesson_order(),
                 lesson.getUnit_number(),

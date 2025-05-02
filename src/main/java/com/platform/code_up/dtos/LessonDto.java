@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 public class LessonDto {
 
     private String title;
-    private String description;
-    private String contentType;
     private String content;
     private Integer lessonOrder;
     private Integer unitNumber;
