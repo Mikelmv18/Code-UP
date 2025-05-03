@@ -74,6 +74,33 @@ public class CourseService {
         course[2].setLessons(lessons.get(2));
         course[2].setQuizzes(quizzes.get(2));
         repo.save(course[2]);*/
+
+        // Course 3: Python Programming
+        course[3] = new Course();
+        course[3].setTitle("Python Programming for Beginners");
+        course[3].setDescription("Learn Python programming from scratch through simple lessons and quizzes.");
+        course[3].setType("programming");
+        course[3].setIsPremium(true);
+        setPythonLessons();
+        setPythonQuizzes();
+        setPythonQuestions();
+        course[3].setLessons(lessons.get(3));
+        course[3].setQuizzes(quizzes.get(3));
+        repo.save(course[3]);
+
+        // Course 4: JavaScript Programming
+        course[4] = new Course();
+        course[4].setTitle("JavaScript Programming for Beginners");
+        course[4].setDescription("Learn JavaScript from the ground up with beginner-friendly lessons, quizzes, and interactive examples.");
+        course[4].setType("programming");
+        course[4].setIsPremium(true);
+        setJavaScriptLessons();
+        setJavaScriptQuizzes();
+        setJavaScriptQuestions();
+        course[4].setLessons(lessons.get(4));
+        course[4].setQuizzes(quizzes.get(4));
+        repo.save(course[4]);
+
     }
 
     private void setJavaQuizzes() {
@@ -1668,4 +1695,711 @@ public class CourseService {
 
 
     }
+    //Python Lessons
+    private void setPythonLessons() {
+        lessons.get(3).add(new Lesson("What is Python?",
+                "Python is a high-level, interpreted programming language known for its simplicity and readability. It was created by Guido van Rossum and released in 1991.",
+                "Introduction to Python", 1, 1, course[3]));
+
+        lessons.get(3).add(new Lesson("Why Learn Python?",
+                "Python is beginner-friendly, used in web development, data science, AI, automation, and more. It's one of the most popular languages today.",
+                "Introduction to Python", 2, 1, course[3]));
+
+        lessons.get(3).add(new Lesson("Installing Python",
+                "You can install Python from python.org. After installation, use the terminal or an IDE like PyCharm or VS Code to run Python scripts.",
+                "Introduction to Python", 3, 1, course[3]));
+
+        // Unit 2: Variables and Data Types
+        lessons.get(3).add(new Lesson("Understanding Variables",
+                "Variables in Python are used to store data values. You don’t need to declare the type.",
+                "Variables and Data Types", 1, 2, course[3]));
+
+        lessons.get(3).add(new Lesson("Common Data Types",
+                "Python includes data types like int, float, str, bool, list, tuple, set, and dict.",
+                "Variables and Data Types", 2, 2, course[3]));
+
+        lessons.get(3).add(new Lesson("Type Casting and Dynamic Typing",
+                "Python is dynamically typed, but you can convert between types using int(), float(), str(), etc.",
+                "Variables and Data Types", 3, 2, course[3]));
+
+        // Unit 3: Operators and Expressions
+        lessons.get(3).add(new Lesson("Arithmetic and Comparison Operators",
+                "Includes +, -, *, /, %, ==, !=, >, <, >=, <=. Used to perform calculations and comparisons.",
+                "Operators and Expressions", 1, 3, course[3]));
+
+        lessons.get(3).add(new Lesson("Logical and Assignment Operators",
+                "Logical: and, or, not. Assignment: =, +=, -=, etc.",
+                "Operators and Expressions", 2, 3, course[3]));
+
+        lessons.get(3).add(new Lesson("Operator Precedence and Associativity",
+                "Determines the order in which expressions are evaluated (PEMDAS-like rules).",
+                "Operators and Expressions", 3, 3, course[3]));
+
+        // Unit 4: Control Flow
+        lessons.get(3).add(new Lesson("If, Elif, Else Statements",
+                "Used for decision-making in Python based on conditions.",
+                "Control Flow", 1, 4, course[3]));
+
+        lessons.get(3).add(new Lesson("While Loops",
+                "Repeats a block of code while a condition is true.",
+                "Control Flow", 2, 4, course[3]));
+
+        lessons.get(3).add(new Lesson("For Loops and Range",
+                "For loops iterate over sequences. The range() function is often used for numbers.",
+                "Control Flow", 3, 4, course[3]));
+
+        // Unit 5: Functions
+        lessons.get(3).add(new Lesson("Defining and Calling Functions",
+                "Use the 'def' keyword. Functions help organize reusable code.",
+                "Functions", 1, 5, course[3]));
+
+        lessons.get(3).add(new Lesson("Function Arguments and Return Values",
+                "You can pass parameters and return values using return.",
+                "Functions", 2, 5, course[3]));
+
+        lessons.get(3).add(new Lesson("Default and Keyword Arguments",
+                "Functions can have default values. Call arguments using keywords for clarity.",
+                "Functions", 3, 5, course[3]));
+
+        // Unit 6: Lists and Tuples
+        lessons.get(3).add(new Lesson("Working with Lists",
+                "Lists are ordered, mutable collections. Use []. Methods: append(), remove(), sort(), etc.",
+                "Lists and Tuples", 1, 6, course[3]));
+
+        lessons.get(3).add(new Lesson("Working with Tuples",
+                "Tuples are ordered, immutable collections. Use ().",
+                "Lists and Tuples", 2, 6, course[3]));
+
+        lessons.get(3).add(new Lesson("Slicing and Indexing",
+                "Access portions of lists or strings using indexes and slicing syntax [start:end:step].",
+                "Lists and Tuples", 3, 6, course[3]));
+
+        // Unit 7: Dictionaries and Sets
+        lessons.get(3).add(new Lesson("Introduction to Dictionaries",
+                "Dictionaries store key-value pairs using {}. Access with keys.",
+                "Dictionaries and Sets", 1, 7, course[3]));
+
+        lessons.get(3).add(new Lesson("Dictionary Methods",
+                "Methods include keys(), values(), items(), get(), update(), etc.",
+                "Dictionaries and Sets", 2, 7, course[3]));
+
+        lessons.get(3).add(new Lesson("Working with Sets",
+                "Sets are unordered collections of unique elements.",
+                "Dictionaries and Sets", 3, 7, course[3]));
+
+        // Unit 8: File Handling
+        lessons.get(3).add(new Lesson("Reading Files",
+                "Use open(), read(), readline(), or readlines() to access file content.",
+                "File Handling", 1, 8, course[3]));
+
+        lessons.get(3).add(new Lesson("Writing to Files",
+                "Use write() or writelines() with open() in write or append mode.",
+                "File Handling", 2, 8, course[3]));
+
+        lessons.get(3).add(new Lesson("Working with File Paths",
+                "Use the 'os' and 'pathlib' modules to manage file paths.",
+                "File Handling", 3, 8, course[3]));
+
+        // Unit 9: Error Handling
+        lessons.get(3).add(new Lesson("Try, Except Blocks",
+                "Handle exceptions using try-except. Optionally use else and finally blocks.",
+                "Error Handling", 1, 9, course[3]));
+
+        lessons.get(3).add(new Lesson("Common Exception Types",
+                "Examples: ValueError, TypeError, FileNotFoundError, ZeroDivisionError.",
+                "Error Handling", 2, 9, course[3]));
+
+        lessons.get(3).add(new Lesson("Raising Exceptions",
+                "Use raise to manually throw exceptions with custom messages.",
+                "Error Handling", 3, 9, course[3]));
+
+        // Unit 10: Object-Oriented Programming
+        lessons.get(3).add(new Lesson("Classes and Objects",
+                "Define custom data types using classes. Create objects using constructors.",
+                "Object-Oriented Programming", 1, 10, course[3]));
+
+        lessons.get(3).add(new Lesson("Attributes and Methods",
+                "Attributes store object data. Methods are functions defined inside classes.",
+                "Object-Oriented Programming", 2, 10, course[3]));
+
+        lessons.get(3).add(new Lesson("Inheritance and Polymorphism",
+                "Use inheritance to extend class behavior. Polymorphism allows method overriding.",
+                "Object-Oriented Programming", 3, 10, course[3]));
+    }
+
+
+    private void setPythonQuizzes() {
+        quizzes.get(3).add(new Quiz("Unit 1: Python Basics",
+                1, 1, course[3], questions.get(3)));
+
+        quizzes.get(3).add(new Quiz("Unit 2: Variables and Data Types",
+                1, 2, course[3], questions.get(3)));
+
+        quizzes.get(3).add(new Quiz("Unit 3: Operators and Expressions",
+                1, 3, course[3], questions.get(3)));
+
+        quizzes.get(3).add(new Quiz("Unit 4: Control Flow",
+                1, 4, course[3], questions.get(3)));
+
+        quizzes.get(3).add(new Quiz("Unit 5: Functions",
+                1, 5, course[3], questions.get(3)));
+
+        quizzes.get(3).add(new Quiz("Unit 6: Lists and Tuples",
+                1, 6, course[3], questions.get(3)));
+
+        quizzes.get(3).add(new Quiz("Unit 7: Dictionaries and Sets",
+                1, 7, course[3], questions.get(3)));
+
+        quizzes.get(3).add(new Quiz("Unit 8: File Handling",
+                1, 8, course[3], questions.get(3)));
+
+        quizzes.get(3).add(new Quiz("Unit 9: Error Handling",
+                1, 9, course[3], questions.get(3)));
+
+        quizzes.get(3).add(new Quiz("Unit 10: Object-Oriented Programming",
+                1, 10, course[3], questions.get(3)));
+    }
+    //Python Questions
+    private void setPythonQuestions() {
+        questions.get(3).add(new Question("1. What is Python primarily known for?\n",
+                "a) Complex syntax\n" +
+                        "b) Speed in mobile apps\n" +
+                        "c) Simplicity and readability ✅\n" +
+                        "d) Use in hardware programming\n",
+                quizzes.get(3).get(0)));
+
+        questions.get(3).add(new Question("2. Who developed Python?\n",
+                "a) Bill Gates\n" +
+                        "b) James Gosling\n" +
+                        "c) Guido van Rossum ✅\n" +
+                        "d) Dennis Ritchie\n",
+                quizzes.get(3).get(0)));
+
+        questions.get(3).add(new Question("3. What file extension is used for Python files?\n",
+                "a) .java\n" +
+                        "b) .py ✅\n" +
+                        "c) .c\n" +
+                        "d) .txt\n",
+                quizzes.get(3).get(0)));
+
+        questions.get(3).add(new Question("1. Which keyword declares a variable in Python?\n",
+                "a) var\n" +
+                        "b) let\n" +
+                        "c) No keyword is needed ✅\n" +
+                        "d) declare\n",
+                quizzes.get(3).get(1)));
+
+        questions.get(3).add(new Question("2. What is the output of: print(type(5))?\n",
+                "a) <class 'float'>\n" +
+                        "b) <class 'int'> ✅\n" +
+                        "c) integer\n" +
+                        "d) type error\n",
+                quizzes.get(3).get(1)));
+
+        questions.get(3).add(new Question("3. Which is a valid variable name?\n",
+                "a) 2value\n" +
+                        "b) my-var\n" +
+                        "c) _value ✅\n" +
+                        "d) class\n",
+                quizzes.get(3).get(1)));
+
+        questions.get(3).add(new Question("1. What does this return: 10 % 3?\n",
+                "a) 3\n" +
+                        "b) 1 ✅\n" +
+                        "c) 10\n" +
+                        "d) 0\n",
+                quizzes.get(3).get(2)));
+
+        questions.get(3).add(new Question("2. Which operator is used for exponentiation?\n",
+                "a) ^\n" +
+                        "b) ** ✅\n" +
+                        "c) %\n" +
+                        "d) //\n",
+                quizzes.get(3).get(2)));
+
+        questions.get(3).add(new Question("3. What is the result of 3 + 2 * 2?\n",
+                "a) 10\n" +
+                        "b) 7 ✅\n" +
+                        "c) 9\n" +
+                        "d) 12\n",
+                quizzes.get(3).get(2)));
+
+        questions.get(3).add(new Question("1. Which statement checks conditions?\n",
+                "a) repeat\n" +
+                        "b) if ✅\n" +
+                        "c) loop\n" +
+                        "d) then\n",
+                quizzes.get(3).get(3)));
+
+        questions.get(3).add(new Question("2. What does 'elif' mean in Python?\n",
+                "a) Else if ✅\n" +
+                        "b) Loop end\n" +
+                        "c) Error\n" +
+                        "d) Another else\n",
+                quizzes.get(3).get(3)));
+
+        questions.get(3).add(new Question("3. What is the output of: if False: print('Hi')?\n",
+                "a) Hi\n" +
+                        "b) Error\n" +
+                        "c) Nothing ✅\n" +
+                        "d) False\n",
+                quizzes.get(3).get(3)));
+
+        questions.get(3).add(new Question("1. Which loop runs until condition is false?\n",
+                "a) for\n" +
+                        "b) while ✅\n" +
+                        "c) loop\n" +
+                        "d) repeat\n",
+                quizzes.get(3).get(4)));
+
+        questions.get(3).add(new Question("2. Which keyword stops a loop?\n",
+                "a) stop\n" +
+                        "b) exit\n" +
+                        "c) break ✅\n" +
+                        "d) halt\n",
+                quizzes.get(3).get(4)));
+
+        questions.get(3).add(new Question("3. What does 'range(3)' return?\n",
+                "a) [1, 2, 3]\n" +
+                        "b) [0, 1, 2] ✅\n" +
+                        "c) [0, 1, 2, 3]\n" +
+                        "d) [3, 2, 1]\n",
+                quizzes.get(3).get(4)));
+
+        questions.get(3).add(new Question("1. What is a function in Python?\n",
+                "a) A keyword\n" +
+                        "b) A stored value\n" +
+                        "c) A block of code for reuse ✅\n" +
+                        "d) A module\n",
+                quizzes.get(3).get(5)));
+
+        questions.get(3).add(new Question("2. Which keyword defines a function?\n",
+                "a) function\n" +
+                        "b) def ✅\n" +
+                        "c) fun\n" +
+                        "d) void\n",
+                quizzes.get(3).get(5)));
+
+        questions.get(3).add(new Question("3. What is the default return type in Python?\n",
+                "a) int\n" +
+                        "b) None ✅\n" +
+                        "c) 0\n" +
+                        "d) bool\n",
+                quizzes.get(3).get(5)));
+
+        questions.get(3).add(new Question("1. How is a list declared?\n",
+                "a) list()\n" +
+                        "b) {}\n" +
+                        "c) [] ✅\n" +
+                        "d) <>\n",
+                quizzes.get(3).get(6)));
+
+        questions.get(3).add(new Question("2. What does len([1,2,3]) return?\n",
+                "a) 2\n" +
+                        "b) 3 ✅\n" +
+                        "c) 1\n" +
+                        "d) Error\n",
+                quizzes.get(3).get(6)));
+
+        questions.get(3).add(new Question("3. What is the index of the last element?\n",
+                "a) -1 ✅\n" +
+                        "b) 0\n" +
+                        "c) size\n" +
+                        "d) end\n",
+                quizzes.get(3).get(6)));
+
+        questions.get(3).add(new Question("1. What is a string in Python?\n",
+                "a) A number\n" +
+                        "b) A list\n" +
+                        "c) A sequence of characters ✅\n" +
+                        "d) A data type for files\n",
+                quizzes.get(3).get(7)));
+
+        questions.get(3).add(new Question("2. How are strings indexed?\n",
+                "a) Starting from 1\n" +
+                        "b) Randomly\n" +
+                        "c) From 0 ✅\n" +
+                        "d) From -1\n",
+                quizzes.get(3).get(7)));
+
+        questions.get(3).add(new Question("3. What does 'hello'.upper() return?\n",
+                "a) error\n" +
+                        "b) HELLO ✅\n" +
+                        "c) hello\n" +
+                        "d) Upperhello\n",
+                quizzes.get(3).get(7)));
+
+        questions.get(3).add(new Question("1. What is a dictionary in Python?\n",
+                "a) A list of values\n" +
+                        "b) A data structure with key-value pairs ✅\n" +
+                        "c) An index\n" +
+                        "d) A library\n",
+                quizzes.get(3).get(8)));
+
+        questions.get(3).add(new Question("2. Which syntax accesses a dictionary value by key?\n",
+                "a) dict.key\n" +
+                        "b) dict{key}\n" +
+                        "c) dict[key] ✅\n" +
+                        "d) dict->key\n",
+                quizzes.get(3).get(8)));
+
+        questions.get(3).add(new Question("3. What does dict.get('x', 0) do?\n",
+                "a) Throws error\n" +
+                        "b) Gets value or returns 0 ✅\n" +
+                        "c) Updates key\n" +
+                        "d) Clears dict\n",
+                quizzes.get(3).get(8)));
+
+        questions.get(3).add(new Question("1. What is a module in Python?\n",
+                "a) A built-in variable\n" +
+                        "b) A set of functions/code ✅\n" +
+                        "c) A loop\n" +
+                        "d) A statement\n",
+                quizzes.get(3).get(9)));
+
+        questions.get(3).add(new Question("2. How to import a module?\n",
+                "a) include math\n" +
+                        "b) use math\n" +
+                        "c) import math ✅\n" +
+                        "d) module math\n",
+                quizzes.get(3).get(9)));
+
+        questions.get(3).add(new Question("3. Which function gives the square root?\n",
+                "a) math.pow()\n" +
+                        "b) math.square()\n" +
+                        "c) math.sqrt() ✅\n" +
+                        "d) math.sqr()\n",
+                quizzes.get(3).get(9)));
+    }
+
+    //Javascript Course
+    private void setJavaScriptLessons() {
+        // Unit 1: Introduction to JavaScript
+        lessons.get(4).add(new Lesson("What is JavaScript?",
+                "JavaScript is a scripting language that enables dynamic content on web pages, allowing for interactive features.",
+                "Introduction to JavaScript", 1, 1, course[4]));
+
+        lessons.get(4).add(new Lesson("JavaScript in Web Development",
+                "Used alongside HTML and CSS, JavaScript is one of the core technologies of the web.",
+                "Introduction to JavaScript", 2, 1, course[4]));
+
+        lessons.get(4).add(new Lesson("Writing and Running JS",
+                "JavaScript can be written in script tags or separate .js files and run in browsers or Node.js.",
+                "Introduction to JavaScript", 3, 1, course[4]));
+
+        // Unit 2: Variables and Data Types
+        lessons.get(4).add(new Lesson("Declaring Variables (var, let, const)",
+                "var is function-scoped, let and const are block-scoped; use const for values that don’t change.",
+                "Variables and Data Types", 1, 2, course[4]));
+
+        lessons.get(4).add(new Lesson("Primitive Data Types",
+                "Includes string, number, boolean, null, undefined, and symbol.",
+                "Variables and Data Types", 2, 2, course[4]));
+
+        lessons.get(4).add(new Lesson("Dynamic Typing and typeof",
+                "JavaScript is dynamically typed; use typeof to check variable types.",
+                "Variables and Data Types", 3, 2, course[4]));
+
+        // Unit 3: Operators and Expressions
+        lessons.get(4).add(new Lesson("Arithmetic and Assignment Operators",
+                "Operators include +, -, *, /, %, ++, --, and assignment operators like =, +=, -=.",
+                "Operators and Expressions", 1, 3, course[4]));
+
+        lessons.get(4).add(new Lesson("Comparison and Logical Operators",
+                "== vs ===, != vs !==, >, <, >=, <=, &&, ||, !.",
+                "Operators and Expressions", 2, 3, course[4]));
+
+        lessons.get(4).add(new Lesson("Ternary and Type Coercion",
+                "Ternary is shorthand for if-else; JavaScript does automatic type conversion in many cases.",
+                "Operators and Expressions", 3, 3, course[4]));
+
+        // Unit 4: Control Structures
+        lessons.get(4).add(new Lesson("If, Else, and Else If",
+                "Control decision-making based on conditions using if, else if, and else blocks.",
+                "Control Structures", 1, 4, course[4]));
+
+        lessons.get(4).add(new Lesson("Switch Statements",
+                "Simplifies multiple condition checks by matching values against cases.",
+                "Control Structures", 2, 4, course[4]));
+
+        lessons.get(4).add(new Lesson("For, While, and Do-While Loops",
+                "Different types of loops for repeating code: for, while, do-while.",
+                "Control Structures", 3, 4, course[4]));
+
+        // Unit 5: Functions
+        lessons.get(4).add(new Lesson("Function Declaration and Expression",
+                "Functions can be declared or assigned to variables as expressions.",
+                "Functions", 1, 5, course[4]));
+
+        lessons.get(4).add(new Lesson("Arrow Functions",
+                "Shorter syntax using =>, does not bind its own this.",
+                "Functions", 2, 5, course[4]));
+
+        lessons.get(4).add(new Lesson("Parameters and Return Values",
+                "Functions can accept arguments and return results using return.",
+                "Functions", 3, 5, course[4]));
+
+        // Unit 6: Arrays and Objects
+        lessons.get(4).add(new Lesson("Creating and Accessing Arrays",
+                "Use [] to define arrays, access elements by index.",
+                "Arrays and Objects", 1, 6, course[4]));
+
+        lessons.get(4).add(new Lesson("Array Methods (push, pop, map, filter)",
+                "Built-in methods to manipulate arrays: push(), pop(), map(), filter().",
+                "Arrays and Objects", 2, 6, course[4]));
+
+        lessons.get(4).add(new Lesson("Objects and Properties",
+                "Objects store key-value pairs; access with dot or bracket notation.",
+                "Arrays and Objects", 3, 6, course[4]));
+
+        // Unit 7: DOM Manipulation
+        lessons.get(4).add(new Lesson("The Document Object Model (DOM)",
+                "DOM represents the structure of web pages as objects and nodes.",
+                "DOM Manipulation", 1, 7, course[4]));
+
+        lessons.get(4).add(new Lesson("Selecting Elements (getElementById, querySelector)",
+                "Use methods like getElementById and querySelector to select HTML elements.",
+                "DOM Manipulation", 2, 7, course[4]));
+
+        lessons.get(4).add(new Lesson("Changing Content and Styles",
+                "Change HTML and CSS properties using JS DOM methods and style objects.",
+                "DOM Manipulation", 3, 7, course[4]));
+
+        // Unit 8: Events and Event Handling
+        lessons.get(4).add(new Lesson("Adding Event Listeners",
+                "Use addEventListener() to run functions when user interacts with elements.",
+                "Events and Event Handling", 1, 8, course[4]));
+
+        lessons.get(4).add(new Lesson("Mouse and Keyboard Events",
+                "Events like click, mouseover, keydown help track user activity.",
+                "Events and Event Handling", 2, 8, course[4]));
+
+        lessons.get(4).add(new Lesson("Event Propagation and Delegation",
+                "Event bubbling and capturing determine event flow; delegation improves performance.",
+                "Events and Event Handling", 3, 8, course[4]));
+
+        // Unit 9: Error Handling and Debugging
+        lessons.get(4).add(new Lesson("Try-Catch-Finally Blocks",
+                "Handle exceptions using try, catch, and finally blocks.",
+                "Error Handling and Debugging", 1, 9, course[4]));
+
+        lessons.get(4).add(new Lesson("Console and Debugging Tools",
+                "Use console.log() and browser dev tools to find bugs.",
+                "Error Handling and Debugging", 2, 9, course[4]));
+
+        lessons.get(4).add(new Lesson("Throwing Custom Errors",
+                "Use throw to create custom error messages when something goes wrong.",
+                "Error Handling and Debugging", 3, 9, course[4]));
+
+        // Unit 10: ES6+ Features
+        lessons.get(4).add(new Lesson("Let, Const, and Template Literals",
+                "ES6 introduced block-scoped variables and backtick template strings.",
+                "ES6+ Features", 1, 10, course[4]));
+
+        lessons.get(4).add(new Lesson("Destructuring and Spread Operator",
+                "Destructuring simplifies variable assignment; spread (...) expands arrays/objects.",
+                "ES6+ Features", 2, 10, course[4]));
+
+        lessons.get(4).add(new Lesson("Promises and Async/Await",
+                "Used for asynchronous programming, replacing callbacks for better readability.",
+                "ES6+ Features", 3, 10, course[4]));
+    }
+
+    //Javascript Quizzes
+    private void setJavaScriptQuizzes() {
+        quizzes.get(4).add(new Quiz("Unit 1: Introduction to JavaScript",
+                1, 1, course[4], questions.get(0)));
+
+        quizzes.get(4).add(new Quiz("Unit 2: Variables and Data Types",
+                1, 2, course[4], questions.get(1)));
+
+        quizzes.get(4).add(new Quiz("Unit 3: Operators and Expressions",
+                1, 3, course[4], questions.get(2)));
+
+        quizzes.get(4).add(new Quiz("Unit 4: Control Structures",
+                1, 4, course[4], questions.get(3)));
+
+        quizzes.get(4).add(new Quiz("Unit 5: Functions",
+                1, 5, course[4], questions.get(4)));
+
+        quizzes.get(4).add(new Quiz("Unit 6: Arrays and Objects",
+                1, 6, course[4], questions.get(5)));
+
+        quizzes.get(4).add(new Quiz("Unit 7: DOM Manipulation",
+                1, 7, course[4], questions.get(6)));
+
+        quizzes.get(4).add(new Quiz("Unit 8: Events and Event Handling",
+                1, 8, course[4], questions.get(7)));
+
+        quizzes.get(4).add(new Quiz("Unit 9: Error Handling and Debugging",
+                1, 9, course[4], questions.get(8)));
+
+        quizzes.get(4).add(new Quiz("Unit 10: ES6+ Features",
+                1, 10, course[4], questions.get(9)));
+    }
+    //Javascript Questions
+    private void setJavaScriptQuestions() {
+        // Unit 1: Introduction to JavaScript
+        questions.get(4).add(new Question("1. What is JavaScript primarily used for in web development?\n",
+                "a) Server-side scripting\n" +
+                        "b) Web page styling\n" +
+                        "c) Making web pages interactive ✅\n" +
+                        "d) Database management\n",
+                quizzes.get(4).get(0)));
+        questions.get(4).add(new Question("2. Who developed JavaScript?\n",
+                "a) Tim Berners-Lee\n" +
+                        "b) Brendan Eich ✅\n" +
+                        "c) Dennis Ritchie\n" +
+                        "d) Mark Zuckerberg\n",
+                quizzes.get(4).get(0)));
+        questions.get(4).add(new Question("3. What keyword is used to declare a variable in JavaScript?\n",
+                "a) var ✅\n" +
+                        "b) int\n" +
+                        "c) dim\n" +
+                        "d) letvar\n",
+                quizzes.get(4).get(0)));
+
+        // Unit 2: Variables and Data Types
+        questions.get(4).add(new Question("1. What is a boolean data type?\n",
+                "a) A text value\n" +
+                        "b) A number\n" +
+                        "c) True or False ✅\n" +
+                        "d) A function\n",
+                quizzes.get(4).get(1)));
+        questions.get(4).add(new Question("2. Which of these is a valid variable name?\n",
+                "a) 123name\n" +
+                        "b) user_name ✅\n" +
+                        "c) var\n" +
+                        "d) user-name\n",
+                quizzes.get(4).get(1)));
+        questions.get(4).add(new Question("3. What is 'undefined' in JavaScript?\n",
+                "a) A declared but uninitialized variable ✅\n" +
+                        "b) A syntax error\n" +
+                        "c) A null object\n" +
+                        "d) A reserved keyword\n",
+                quizzes.get(4).get(1)));
+
+        // Unit 3: Operators and Expressions
+        questions.get(4).add(new Question("1. What does the '+' operator do?\n",
+                "a) Adds numbers\n" +
+                        "b) Concatenates strings\n" +
+                        "c) Both ✅\n" +
+                        "d) None\n",
+                quizzes.get(4).get(2)));
+        questions.get(4).add(new Question("2. What is the result of 5 === '5'?\n",
+                "a) true\n" +
+                        "b) false ✅\n" +
+                        "c) undefined\n" +
+                        "d) error\n",
+                quizzes.get(4).get(2)));
+        questions.get(4).add(new Question("3. Which is a comparison operator?\n",
+                "a) &&\n" +
+                        "b) === ✅\n" +
+                        "c) =\n" +
+                        "d) +=\n",
+                quizzes.get(4).get(2)));
+
+        // Unit 4: Control Structures
+        questions.get(4).add(new Question("1. Which statement is used to make decisions?\n",
+                "a) for\n" +
+                        "b) if ✅\n" +
+                        "c) switch\n" +
+                        "d) while\n",
+                quizzes.get(4).get(3)));
+        questions.get(4).add(new Question("2. What does a 'switch' statement do?\n",
+                "a) Repeats code\n" +
+                        "b) Tests multiple conditions ✅\n" +
+                        "c) Declares functions\n" +
+                        "d) Loops forever\n",
+                quizzes.get(4).get(3)));
+        questions.get(4).add(new Question("3. What keyword ends a case block?\n",
+                "a) stop\n" +
+                        "b) close\n" +
+                        "c) break ✅\n" +
+                        "d) exit\n",
+                quizzes.get(4).get(3)));
+
+        // Unit 5: Loops
+        questions.get(4).add(new Question("1. Which loop checks condition before running?\n",
+                "a) do-while\n" +
+                        "b) while ✅\n" +
+                        "c) forever\n" +
+                        "d) loop\n",
+                quizzes.get(4).get(4)));
+        questions.get(4).add(new Question("2. What loop always runs at least once?\n",
+                "a) for\n" +
+                        "b) while\n" +
+                        "c) do-while ✅\n" +
+                        "d) loop\n",
+                quizzes.get(4).get(4)));
+        questions.get(4).add(new Question("3. What is used to exit a loop early?\n",
+                "a) break ✅\n" +
+                        "b) exit\n" +
+                        "c) close\n" +
+                        "d) return\n",
+                quizzes.get(4).get(4)));
+
+        // Unit 6: Functions
+        questions.get(4).add(new Question("1. How do you define a function?\n",
+                "a) method myFunc(){}\n" +
+                        "b) function myFunc(){} ✅\n" +
+                        "c) def myFunc(){}\n" +
+                        "d) fun myFunc(){}\n",
+                quizzes.get(4).get(5)));
+        questions.get(4).add(new Question("2. What keyword returns a value?\n",
+                "a) break\n" +
+                        "b) stop\n" +
+                        "c) return ✅\n" +
+                        "d) yield\n",
+                quizzes.get(4).get(5)));
+        questions.get(4).add(new Question("3. Functions in JS are:\n",
+                "a) Not reusable\n" +
+                        "b) First-class citizens ✅\n" +
+                        "c) Only global\n" +
+                        "d) Static\n",
+                quizzes.get(4).get(5)));
+
+        // Unit 7: Arrays
+        questions.get(4).add(new Question("1. How to define an array?\n",
+                "a) let a = [] ✅\n" +
+                        "b) let a = {}\n" +
+                        "c) let a = ()\n" +
+                        "d) let a = <>\n",
+                quizzes.get(4).get(6)));
+        questions.get(4).add(new Question("2. What method adds an item to an array?\n",
+                "a) add()\n" +
+                        "b) append()\n" +
+                        "c) push() ✅\n" +
+                        "d) insert()\n",
+                quizzes.get(4).get(6)));
+        questions.get(4).add(new Question("3. Which method removes the last item?\n",
+                "a) shift()\n" +
+                        "b) pop() ✅\n" +
+                        "c) splice()\n" +
+                        "d) delete()\n",
+                quizzes.get(4).get(6)));
+
+        // Unit 8: Objects
+        questions.get(4).add(new Question("1. What is a JavaScript object?\n",
+                "a) A number\n" +
+                        "b) A key-value pair ✅\n" +
+                        "c) A string\n" +
+                        "d) A function\n",
+                quizzes.get(4).get(7)));
+        questions.get(4).add(new Question("2. How to access an object’s property?\n",
+                "a) obj->prop\n" +
+                        "b) obj[prop] or obj.prop ✅\n" +
+                        "c) obj::prop\n" +
+                        "d) obj.prop()\n",
+                quizzes.get(4).get(7)));
+        questions.get(4).add(new Question("3. What is JSON?\n",
+                "a) JavaScript Object Notation ✅\n" +
+                        "b) Java Simple Object Node\n" +
+                        "c) Java Set Object\n" +
+                        "d) JS Option Notation\n",
+                quizzes.get(4).get(7)));
+    }
+
+
+
 }
