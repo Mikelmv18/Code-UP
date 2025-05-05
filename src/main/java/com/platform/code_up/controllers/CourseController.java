@@ -21,9 +21,9 @@ public class CourseController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Course> createCourse() throws CourseNotFoundException {
-        Course course = service.createCourse();
-        return ResponseEntity.ok(course);
+    public ResponseEntity<?> createCourse() throws CourseNotFoundException {
+        service.createCourses();
+        return ResponseEntity.ok().body("");
     }
 
     @GetMapping("/")
