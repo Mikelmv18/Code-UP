@@ -12,5 +12,5 @@ public class CourseDto {
     private String description;
     private String type;
     private Boolean isPremium;
-    private String prerequisiteCourseIds;
+    private Integer prerequisiteCourseIds;
 }

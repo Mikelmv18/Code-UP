@@ -32,4 +32,15 @@ public class Quiz {
 
     @OneToMany(mappedBy = "quiz")
     private List<UserQuiz> userQuizzes;
+
+    public Quiz(String title, int quiz_order, int unit_number, Course course, List<Question>
+            questions){
+
+        this.title = title;
+        this.quiz_order = quiz_order;
+        this.unit_number = unit_number;
+        this.course = course;
+        this.questions = questions;
+
+    }
 }

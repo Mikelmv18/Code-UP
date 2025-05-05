@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/courses")
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = {"http://localhost:8005", "http://localhost:8081"})
 public class CourseController {
 
     private final CourseService service;
@@ -21,9 +21,9 @@ public class CourseController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Course> createCourse(@RequestBody CourseDto courseDto) {
-        Course course = service.createCourse(courseDto);
-        return ResponseEntity.ok(course);
+    public ResponseEntity<?> createCourse() throws CourseNotFoundException {
+        service.createCourses();
+        return ResponseEntity.ok().body("");
     }
 
     @GetMapping("/")

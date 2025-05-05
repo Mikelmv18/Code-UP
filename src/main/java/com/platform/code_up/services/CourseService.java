@@ -2,10 +2,14 @@ package com.platform.code_up.services;
 
 import com.platform.code_up.dtos.CourseDto;
 import com.platform.code_up.entities.Course;
+import com.platform.code_up.entities.Lesson;
+import com.platform.code_up.entities.Question;
+import com.platform.code_up.entities.Quiz;
 import com.platform.code_up.exceptions.CourseNotFoundException;
 import com.platform.code_up.repositories.CourseRepository;
+import com.platform.code_up.services.courses.CourseInstances;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,20 +17,15 @@ import java.util.List;
 public class CourseService {
 
     private final CourseRepository repo;
+    private CourseInstances courseInstances;
 
     public CourseService(CourseRepository repo) {
         this.repo = repo;
+        this.courseInstances = new CourseInstances(repo);
     }
 
-    public Course createCourse(CourseDto courseDto) {
-        Course course = new Course();
-        course.setTitle(courseDto.getTitle());
-        course.setDescription(courseDto.getDescription());
-        course.setType(courseDto.getType());
-        course.setIsPremium(courseDto.getIsPremium());
-        course.setPrerequisiteCourseIds(courseDto.getPrerequisiteCourseIds());
-
-        return repo.save(course);
+    public void createCourses() {
+        this.courseInstances.createCourses();
     }
 
     public List<Course> listAllCourses() {
@@ -58,4 +57,5 @@ public class CourseService {
         Course course = repo.findById(id).orElseThrow(() -> new CourseNotFoundException());
         repo.delete(course);
     }
+
 }

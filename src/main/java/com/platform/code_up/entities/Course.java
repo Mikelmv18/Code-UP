@@ -25,7 +25,7 @@ public class Course {
     @Column(name = "is_premium")
     private Boolean isPremium;
 
-    private String prerequisiteCourseIds;
+    private Integer prerequisiteCourseIds;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Quiz> quizzes;

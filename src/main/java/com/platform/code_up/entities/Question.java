@@ -9,6 +9,7 @@ import java.util.List;
 @Table(name = "questions")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Question {
 
     @Id
@@ -25,4 +26,10 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
+
+    public Question(String question, String choices, Quiz quiz) {
+        this.question = question;
+        this.choices = choices;
+        this.quiz = quiz;
+    }
 }
