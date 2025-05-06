@@ -72,6 +72,7 @@ public class CourseInstances {
         course[2].setDescription("Learn Java programming through clear, structured lessons and practical quizzes.");
         course[2].setType("programming");
         course[2].setIsPremium(true);
+        course[2].setPrerequisiteCourseIds(course[0].getId());
         setJavaLessons();
         setJavaQuizzes();
         setJavaQuestions();
@@ -87,6 +88,7 @@ public class CourseInstances {
         course[3].setDescription("Learn Python programming from scratch through simple lessons and quizzes.");
         course[3].setType("programming");
         course[3].setIsPremium(true);
+        course[3].setPrerequisiteCourseIds(course[0].getId());
         setPythonLessons();
         setPythonQuizzes();
         setPythonQuestions();
@@ -102,6 +104,7 @@ public class CourseInstances {
         course[4].setDescription("Learn JavaScript from the ground up with beginner-friendly lessons, quizzes, and interactive examples.");
         course[4].setType("programming");
         course[4].setIsPremium(true);
+        course[4].setPrerequisiteCourseIds(course[0].getId());
         setJavaScriptLessons();
         setJavaScriptQuizzes();
         setJavaScriptQuestions();
@@ -146,6 +149,7 @@ private void setJavaQuizzes() {
         quizzes.get(1).add(new Quiz("Unit 10: Exception Handling",
                 1, 10, course[1], questions.get(2)));
     }
+
     private void setJavaQuestions() {
         questions.get(2).add(new Question("What makes Java platform-independent?",
                 """
@@ -829,6 +833,7 @@ private void setJavaQuizzes() {
                 "Exception Handling", 3, 10, course[1]));
 
     }
+
     private void setLessons() {
         lessons.get(0).add(new Lesson(" Understanding Algorithms\n",
                 """
