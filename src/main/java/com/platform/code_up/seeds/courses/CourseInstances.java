@@ -1,4 +1,4 @@
-package com.platform.code_up.services.courses;
+package com.platform.code_up.seeds.courses;
 
 import com.platform.code_up.entities.Course;
 import com.platform.code_up.entities.Lesson;

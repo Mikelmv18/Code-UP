@@ -2,13 +2,9 @@ package com.platform.code_up.services;
 
 import com.platform.code_up.dtos.CourseDto;
 import com.platform.code_up.entities.Course;
-import com.platform.code_up.entities.Lesson;
-import com.platform.code_up.entities.Question;
-import com.platform.code_up.entities.Quiz;
 import com.platform.code_up.exceptions.CourseNotFoundException;
 import com.platform.code_up.repositories.CourseRepository;
-import com.platform.code_up.services.courses.CourseInstances;
-import jakarta.transaction.Transactional;
+import com.platform.code_up.seeds.courses.CourseInstances;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;

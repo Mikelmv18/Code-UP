@@ -1,4 +1,4 @@
-package com.platform.code_up;
+package com.platform.code_up.seeds;
 
 import com.platform.code_up.exceptions.CourseNotFoundException;
 import com.platform.code_up.services.CourseService;
