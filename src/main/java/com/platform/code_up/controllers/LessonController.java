@@ -1,6 +1,8 @@
 package com.platform.code_up.controllers;
 
+import com.platform.code_up.dtos.CourseDto;
 import com.platform.code_up.dtos.LessonDto;
+import com.platform.code_up.entities.Course;
 import com.platform.code_up.entities.Lesson;
 import com.platform.code_up.exceptions.CourseNotFoundException;
 import com.platform.code_up.exceptions.LessonNotFoundException;
@@ -30,9 +32,18 @@ public class LessonController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Lesson>> getAllLessons() {
-        List<Lesson> lessons = service.listAllLessons();
-        return ResponseEntity.ok(lessons);
+    public ResponseEntity<List<LessonDto>> getAllLessons() {
+        List<LessonDto> lessonDtos = service.listAllLessons().stream()
+                .map(lessons -> new LessonDto(
+                        lessons.getTitle(),
+                        lessons.getContent(),
+                        lessons.getLesson_order(),
+                        lessons.getUnit_number(),
+                        lessons.getCourse().getId()
+                ))
+                .toList();
+
+        return ResponseEntity.ok(lessonDtos);
     }
 
     @GetMapping("/{id}")
@@ -62,4 +73,12 @@ public class LessonController {
         service.deleteLesson(id);
         return ResponseEntity.ok().body("Lesson deleted successfully");
     }
-}
+
+    @GetMapping("/by-course/{course_id}")
+    public ResponseEntity<List<LessonDto>> getLessonsByCourseId(
+            @PathVariable("course_id") Integer course_id) {
+
+        List<LessonDto> lessons = service.getLessonsByCourseId(course_id);
+        return ResponseEntity.ok(lessons);
+    }
+ }

@@ -36,7 +36,8 @@ public class SecurityConfiguration {
                 .cors(Customizer.withDefaults()) // ✅ This line enables CORS using your @Bean method
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/auth/**", "/forgotPassword/**","/courses/**").permitAll()
+                        .requestMatchers("/auth/**", "/forgotPassword/**",
+                                "/courses/**","/lessons/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

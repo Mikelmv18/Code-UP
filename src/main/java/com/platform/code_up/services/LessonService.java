@@ -7,10 +7,12 @@ import com.platform.code_up.exceptions.CourseNotFoundException;
 import com.platform.code_up.exceptions.LessonNotFoundException;
 import com.platform.code_up.repositories.CourseRepository;
 import com.platform.code_up.repositories.LessonRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LessonService {
@@ -75,5 +77,23 @@ public class LessonService {
                 .orElseThrow(() -> new LessonNotFoundException());
 
         lessonRepo.delete(lesson);
+    }
+
+    @Transactional
+    public List<LessonDto> getLessonsByCourseId(Integer courseId) {
+        List<Lesson> lessons = lessonRepo.findLessonsByCourseId(courseId);
+        return lessons.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    private LessonDto convertToDto(Lesson lesson) {
+        return new LessonDto(
+                lesson.getTitle(),
+                lesson.getContent(), // Assuming getTextContent() exists
+                lesson.getLesson_order(),                   // Assuming getOrder() exists
+                lesson.getUnit_number(),                    // Assuming getUnit() exists
+                lesson.getCourse().getId()           // Get course ID
+        );
     }
 }
