@@ -30,11 +30,18 @@ public class CourseService {
         return courses;
     }
 
-    public Course getById(Integer id) throws CourseNotFoundException {
-        return repo.findById(id).orElseThrow(() -> new CourseNotFoundException());
+    public CourseDto getById(Integer id) throws CourseNotFoundException {
+
+        Course course = repo.findById(id).orElseThrow(() -> new CourseNotFoundException());
+
+        return new CourseDto(course.getTitle(),
+                    course.getDescription(),
+                    course.getType(),
+                    course.getIsPremium(),
+                    course.getPrerequisiteCourseIds());
     }
 
-    public CourseDto updateCourse(Integer id, CourseDto courseDto) throws CourseNotFoundException {
+    public void updateCourse(Integer id, CourseDto courseDto) throws CourseNotFoundException {
         Course course = repo.findById(id).orElseThrow(() -> new CourseNotFoundException());
 
         course.setTitle(courseDto.getTitle());
@@ -45,8 +52,6 @@ public class CourseService {
 
         repo.save(course);
 
-        return new CourseDto(course.getTitle(), course.getDescription(), course.getType(),
-                course.getIsPremium(), course.getPrerequisiteCourseIds());
     }
 
     public void deleteCourse(Integer id) throws CourseNotFoundException {

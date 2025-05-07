@@ -1,6 +1,7 @@
 package com.platform.code_up.controllers;
 
 import com.platform.code_up.dtos.CourseDto;
+import com.platform.code_up.dtos.QuizDto;
 import com.platform.code_up.entities.Course;
 import com.platform.code_up.exceptions.CourseNotFoundException;
 import com.platform.code_up.services.CourseService;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/courses")
-@CrossOrigin(origins = {"http://localhost:8005", "http://localhost:8081"})
+@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:8081"})
 public class CourseController {
 
     private final CourseService service;
@@ -27,24 +28,38 @@ public class CourseController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<Course>> getAllCourses() {
-        List<Course> courses = service.listAllCourses();
-        return ResponseEntity.ok(courses);
+    public ResponseEntity<List<CourseDto>> getAllCourses() {
+        List<CourseDto> courseDtos = service.listAllCourses().stream()
+                .map(course -> new CourseDto(
+                        course.getTitle(),
+                        course.getDescription(),
+                        course.getType(),
+                        course.getIsPremium(),
+                        course.getPrerequisiteCourseIds()
+                ))
+                .toList();
+
+        return ResponseEntity.ok(courseDtos);
     }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<CourseDto> getCourseById(@PathVariable Integer id) throws CourseNotFoundException {
-        Course course = service.getById(id);
-        return ResponseEntity.ok(new CourseDto(course.getTitle(), course.getDescription(), course.getType(),
-                course.getIsPremium(), course.getPrerequisiteCourseIds()));
+
+        CourseDto courseDto = service.getById(id);
+
+        return ResponseEntity.ok(courseDto);
+
     }
 
+
     @PutMapping("/{id}")
-    public ResponseEntity<CourseDto> updateCourse(@PathVariable Integer id,
+    public ResponseEntity<?> updateCourse(@PathVariable Integer id,
                                                   @RequestBody CourseDto dto)
             throws CourseNotFoundException {
-        CourseDto courseDto = service.updateCourse(id, dto);
-        return ResponseEntity.ok(courseDto);
+         service.updateCourse(id, dto);
+        return ResponseEntity.ok().body("Course updated");
     }
 
     @DeleteMapping("/{id}")

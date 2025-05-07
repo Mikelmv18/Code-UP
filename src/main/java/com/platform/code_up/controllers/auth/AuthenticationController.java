@@ -15,7 +15,7 @@ import java.util.Map;
 
 @RequestMapping("/auth")
 @RestController
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = {"http://localhost:8081","http://localhost:8005"})
 public class AuthenticationController {
 
     private final JwtService jwtService;

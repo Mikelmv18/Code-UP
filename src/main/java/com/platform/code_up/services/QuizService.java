@@ -28,7 +28,6 @@ public class QuizService {
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
         quiz.setTitle(quizDto.getTitle());
-        quiz.setTimer(quizDto.getTimer());
         quiz.setQuiz_order(quizDto.getQuizOrder());
         quiz.setUnit_number(quizDto.getUnitNumber());
         quiz.setCourse(course);
@@ -55,7 +54,6 @@ public class QuizService {
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
         quiz.setTitle(quizDto.getTitle());
-        quiz.setTimer(quizDto.getTimer());
         quiz.setQuiz_order(quizDto.getQuizOrder());
         quiz.setUnit_number(quizDto.getUnitNumber());
         quiz.setCourse(course);
@@ -64,7 +62,6 @@ public class QuizService {
 
         return new QuizDto(
                 quiz.getTitle(),
-                quiz.getTimer(),
                 quiz.getQuiz_order(),
                 quiz.getUnit_number(),
                 quiz.getCourse().getId()

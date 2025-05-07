@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class QuizDto {
 
     private String title;
-    private Integer timer;
     private int quizOrder;
     private int unitNumber;
     private Integer courseId;
