@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/achievements")
@@ -57,6 +59,7 @@ public class AchievementController {
         achievementService.deleteAchievement(id);
         return ResponseEntity.ok().body("Achievement deleted");
     }
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.platform.code_up.controllers.auth;
 
+import com.platform.code_up.dtos.AuthenticationResponseDto;
 import com.platform.code_up.dtos.LoginResponse;
 import com.platform.code_up.dtos.LoginUserDto;
 import com.platform.code_up.dtos.RegisterUserDto;
@@ -8,10 +9,12 @@ import com.platform.code_up.services.auth.AuthenticationService;
 import com.platform.code_up.services.auth.JwtService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.UUID;
 
 @RequestMapping("/auth")
 @RestController
@@ -46,16 +49,19 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
-
-        User authenticatedUser = authenticationService.authenticate(loginUserDto);
-
-        String jwtToken = jwtService.generateToken(authenticatedUser);
+        AuthenticationResponseDto authResponse = authenticationService.authenticate(loginUserDto);
 
         LoginResponse loginResponse = new LoginResponse();
-
-        loginResponse.setToken(jwtToken);
+        loginResponse.setToken(authResponse.accessToken());              // ✅ use token from response
+        loginResponse.setRefreshToken(authResponse.refreshToken());      // ✅ new field
         loginResponse.setExpiresIn(jwtService.getExpirationTime());
 
         return ResponseEntity.ok(loginResponse);
     }
+    @DeleteMapping("/logout")
+    public ResponseEntity<?> logout(@RequestParam UUID refreshToken) {
+        authenticationService.logout(refreshToken);
+        return ResponseEntity.ok(Map.of("message", "Logged out successfully"));
+    }
+
 }
