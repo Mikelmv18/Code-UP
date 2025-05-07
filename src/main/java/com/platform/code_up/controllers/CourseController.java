@@ -1,8 +1,6 @@
 package com.platform.code_up.controllers;
 
 import com.platform.code_up.dtos.CourseDto;
-import com.platform.code_up.dtos.QuizDto;
-import com.platform.code_up.entities.Course;
 import com.platform.code_up.exceptions.CourseNotFoundException;
 import com.platform.code_up.services.CourseService;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/courses")
-@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:8081"})
+@CrossOrigin(origins = {"http://localhost:8081", "http://172.20.10.2:8081"})
 public class CourseController {
 
     private final CourseService service;
