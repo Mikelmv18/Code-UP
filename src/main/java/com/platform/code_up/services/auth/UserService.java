@@ -3,6 +3,7 @@ package com.platform.code_up.services.auth;
 import com.platform.code_up.dtos.UserDto;
 import com.platform.code_up.entities.User;
 import com.platform.code_up.repositories.auth.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class UserService {
         return users;
     }
 
+    @Transactional
     public UserDto getUserbyId(Integer id) {
 
         User user = userRepository.findById(id).orElseThrow();

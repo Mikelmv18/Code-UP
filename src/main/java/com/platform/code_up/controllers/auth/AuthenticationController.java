@@ -9,13 +9,15 @@ import com.platform.code_up.services.auth.JwtService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
 @RequestMapping("/auth")
 @RestController
-@CrossOrigin(origins = {"http://localhost:8081","http://localhost:8005"})
 public class AuthenticationController {
 
     private final JwtService jwtService;
@@ -34,7 +36,7 @@ public class AuthenticationController {
         if (errors.hasErrors()) {
 
             String firstError = String.valueOf(errors.getAllErrors().
-                   get(0).getDefaultMessage());
+                    get(0).getDefaultMessage());
 
             return ResponseEntity.badRequest().body(Map.of("error", firstError));
         }
@@ -43,16 +45,13 @@ public class AuthenticationController {
         return ResponseEntity.ok(registeredUser);
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserDto loginUserDto) {
-
         User authenticatedUser = authenticationService.authenticate(loginUserDto);
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
         LoginResponse loginResponse = new LoginResponse();
-
         loginResponse.setToken(jwtToken);
         loginResponse.setExpiresIn(jwtService.getExpirationTime());
 

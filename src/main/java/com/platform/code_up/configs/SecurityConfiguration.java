@@ -3,9 +3,7 @@ package com.platform.code_up.configs;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -16,9 +14,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfiguration {
-
     private final AuthenticationProvider authenticationProvider;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
@@ -33,38 +29,27 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(Customizer.withDefaults()) // ✅ This line enables CORS using your @Bean method
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/auth/**", "/forgotPassword/**",
-                                "/courses/**","/lessons/**").permitAll()
-                        .anyRequest().authenticated())
+                .csrf(csrf -> csrf.disable())  // Add this line
+                .securityMatcher("/**")
+                .authorizeHttpRequests((authz) -> authz
+                        .requestMatchers("/auth/**").permitAll()
+                        .anyRequest().authenticated()
+                )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-
-        // Allow both localhost and your device IP
-        configuration.setAllowedOrigins(List.of(
-                "http://localhost:8081",
-                "http://172.20.10.2:8081"
-        ));
-
-        // Allow all standard REST methods
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
-        // Allow common headers
-        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
-
-        // Optionally allow credentials if you’re sending cookies/auth headers
+        configuration.setAllowedOrigins(List.of("*"));  // Allow all origins for development
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));  // Add more methods
+        configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept"));
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -72,5 +57,4 @@ public class SecurityConfiguration {
 
         return source;
     }
-
 }

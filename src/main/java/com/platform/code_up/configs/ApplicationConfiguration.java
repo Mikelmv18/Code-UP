@@ -1,6 +1,7 @@
 package com.platform.code_up.configs;
 
 
+
 import com.platform.code_up.repositories.auth.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
